@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primaryLightColor"
+    tools:context=".ui.new_customer.NewFragment">
+
+
+    <EditText
+        android:id="@+id/edit_text_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="Name"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        android:textColor="@color/primaryTextColor"
+        android:textColorHint="@color/primaryHintColor"
+        tools:ignore="HardcodedText,LabelFor" />
+
+    <EditText
+        android:id="@+id/edit_text_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="Address"
+        android:ems="10"
+        android:hint="Address"
+        android:inputType="textPersonName"
+        android:textColor="@color/primaryTextColor"
+        android:textColorHint="@color/primaryHintColor"
+        tools:ignore="HardcodedText,LabelFor"
+        android:layout_below="@id/edit_text_name"/>
+
+    <EditText
+        android:id="@+id/edit_text_account_balance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="Account_balance"
+        android:ems="10"
+        android:hint="Account Balance"
+        android:inputType="number"
+        android:textColor="@color/primaryTextColor"
+        android:textColorHint="@color/primaryHintColor"
+        tools:ignore="HardcodedText,LabelFor"
+        android:layout_below="@id/edit_text_address"/>
+
+    <EditText
+        android:id="@+id/edit_telephone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="Telephone_number"
+        android:ems="10"
+        android:hint="Telephone Number"
+        android:inputType="phone"
+        android:textColor="@color/primaryTextColor"
+        android:textColorHint="@color/primaryHintColor"
+        tools:ignore="HardcodedText,LabelFor"
+        android:layout_below="@id/edit_text_account_balance"/>
+
+    <EditText
+        android:id="@+id/edit_text_data_of_last_payment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="Data_of_last_payment"
+        android:ems="10"
+        android:hint="Data Of Last Payment"
+        android:inputType="textPersonName"
+        android:textColor="@color/primaryTextColor"
+        android:textColorHint="@color/primaryHintColor"
+        tools:ignore="HardcodedText,LabelFor"
+        android:layout_below="@id/edit_telephone_number"/>
+
+    <Button
+        android:id="@+id/button_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/edit_text_data_of_last_payment"
+        android:layout_centerHorizontal="true"
+        tools:ignore="HardcodedText"
+        android:enabled="false"/>
+
+</RelativeLayout>

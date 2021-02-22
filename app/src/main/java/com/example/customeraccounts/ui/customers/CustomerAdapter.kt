@@ -1,15 +1,19 @@
 package com.example.customeraccounts.ui.customers
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.customeraccounts.R
 import com.example.customeraccounts.data.Customer
 import com.example.customeraccounts.databinding.ItemCustomerBinding
 
 class CustomerAdapter() :
     ListAdapter<Customer, CustomerAdapter.CustomerViewHolder>(DiffCallback()) {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomerViewHolder {
         val binding =
             ItemCustomerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -21,13 +25,23 @@ class CustomerAdapter() :
         holder.bind(currentItem)
     }
 
+    @SuppressLint("ResourceAsColor")
     class CustomerViewHolder(private val binding: ItemCustomerBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(customer: Customer) {
             binding.apply {
                 name.text = customer.name
+                id.text = customer.id.toString()
+
+                root.setOnClickListener {
+                    val action =
+                        CustomerFragmentDirections.actionCustomerFragment2ToDetailsFragment(customer)
+                    it.findNavController().navigate(action)
+                }
             }
         }
+
+
     }
 
     class DiffCallback : DiffUtil.ItemCallback<Customer>() {

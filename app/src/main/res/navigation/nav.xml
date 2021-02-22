@@ -9,6 +9,33 @@
     <fragment
         android:id="@+id/customerFragment2"
         android:name="com.example.customeraccounts.ui.customers.CustomerFragment"
-        android:label="fragment_customer"
-        tools:layout="@layout/fragment_customer" />
+        android:label="Customers"
+        tools:layout="@layout/fragment_customer">
+        <action
+            android:id="@+id/action_customerFragment2_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_customerFragment2_to_newFragment"
+            app:destination="@id/newFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.customeraccounts.ui.details.DetailsFragment"
+        android:label="Details"
+        tools:layout="@layout/fragment_details">
+        <argument
+            android:name="customer"
+            app:argType="com.example.customeraccounts.data.Customer" />
+    </fragment>
+    <fragment
+        android:id="@+id/newFragment"
+        android:name="com.example.customeraccounts.ui.new_customer.NewFragment"
+        android:label="New Customer"
+        tools:layout="@layout/fragment_new" >
+        <action
+            android:id="@+id/action_newFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment"
+            app:popUpTo="@id/customerFragment2"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

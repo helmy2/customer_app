@@ -9,7 +9,7 @@
         android:id="@+id/recycler_view_tasks"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_customer"/>
+        tools:listitem="@layout/item_customer" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add_task"
@@ -17,8 +17,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
+        android:backgroundTint="@color/primaryColor"
         android:src="@drawable/ic_add"
-        android:contentDescription="add"
-        tools:ignore="HardcodedText" />
+        android:contentDescription="@string/add"
+        tools:ignore="UnusedAttribute" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

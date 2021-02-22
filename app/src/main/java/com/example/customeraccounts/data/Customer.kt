@@ -1,26 +1,20 @@
 package com.example.customeraccounts.data
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @Entity(tableName = "customer_table")
-data class Customer(
+data class Customer (
 
     @ColumnInfo(name = "name")
     val name: String = " ",
 
     @ColumnInfo(name = "address")
     val address: String = " ",
-
-    @ColumnInfo(name = "city")
-    val city: String = " ",
-
-    @ColumnInfo(name = "state")
-    val state: String = " ",
-
-    @ColumnInfo(name = "zip")
-    val zip: String = " ",
 
     @ColumnInfo(name = "telephone_number")
     val telephoneNumber: String = " ",
@@ -33,4 +27,4 @@ data class Customer(
 
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0
-)
+): Parcelable

@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.customeraccounts.data.CustomerViewModel
 import com.example.customeraccounts.databinding.FragmentCustomerBinding
 
 
@@ -19,7 +21,7 @@ class CustomerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        val binding = FragmentCustomerBinding.inflate(inflater,container,false)
+        val binding = FragmentCustomerBinding.inflate(inflater, container, false)
 
         val customerAdapter = CustomerAdapter()
 
@@ -30,8 +32,14 @@ class CustomerFragment : Fragment() {
                 setHasFixedSize(true)
             }
         }
-        customerViewModel.allData.observe(viewLifecycleOwner ) {
+        customerViewModel.allData.observe(viewLifecycleOwner) {
             customerAdapter.submitList(it)
+        }
+
+        binding.fabAddTask.setOnClickListener {
+            val action =
+                CustomerFragmentDirections.actionCustomerFragment2ToNewFragment()
+            findNavController().navigate(action)
         }
 
         return binding.root

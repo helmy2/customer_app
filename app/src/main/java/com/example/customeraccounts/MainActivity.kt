@@ -2,30 +2,33 @@ package com.example.customeraccounts
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.viewModels
-import androidx.lifecycle.Observer
-import com.example.customeraccounts.data.Customer
-import com.example.customeraccounts.ui.customers.CustomerViewModel
+import androidx.appcompat.widget.Toolbar
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.customeraccounts.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-
-    private val customerViewModel: CustomerViewModel by viewModels()
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // customerViewModel =ViewModelProvider(this).get(CustomerViewModel::class.java)
-//
-        for (i in 1..9){
-        customerViewModel.addCustomer(Customer("$i",id = i))
-        }
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = navHostFragment.navController
+        val appBarConfiguration = AppBarConfiguration(navController.graph)
 
-
-        customerViewModel.allData.observe(this, Observer { user ->
-            binding.textView.text = user.size.toString()
-        })
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        setupActionBarWithNavController(navController)
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
 }
