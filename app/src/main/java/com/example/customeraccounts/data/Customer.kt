@@ -26,5 +26,5 @@ data class Customer (
     val dateOfLastPayment: String = " ",
 
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 0
+    var id: Int = 0
 ): Parcelable

@@ -28,10 +28,11 @@ class CustomerAdapter() :
     @SuppressLint("ResourceAsColor")
     class CustomerViewHolder(private val binding: ItemCustomerBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun bind(customer: Customer) {
             binding.apply {
                 name.text = customer.name
-                id.text = customer.id.toString()
+                accountBalance.text = customer.accountBalance + "$"
 
                 root.setOnClickListener {
                     val action =
@@ -40,8 +41,6 @@ class CustomerAdapter() :
                 }
             }
         }
-
-
     }
 
     class DiffCallback : DiffUtil.ItemCallback<Customer>() {

@@ -26,6 +26,9 @@
         <argument
             android:name="customer"
             app:argType="com.example.customeraccounts.data.Customer" />
+        <action
+            android:id="@+id/action_detailsFragment_to_customerFragment2"
+            app:destination="@id/customerFragment2" />
     </fragment>
     <fragment
         android:id="@+id/newFragment"
@@ -33,9 +36,7 @@
         android:label="New Customer"
         tools:layout="@layout/fragment_new" >
         <action
-            android:id="@+id/action_newFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment"
-            app:popUpTo="@id/customerFragment2"
-            app:popUpToInclusive="true" />
+            android:id="@+id/action_newFragment_to_customerFragment2"
+            app:destination="@id/customerFragment2" />
     </fragment>
 </navigation>

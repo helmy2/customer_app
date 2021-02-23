@@ -1,85 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/primaryLightColor"
-    tools:context=".ui.new_customer.NewFragment">
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp">
 
-
-    <EditText
-        android:id="@+id/edit_text_name"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autofillHints="Name"
-        android:ems="10"
-        android:hint="Name"
-        android:inputType="textPersonName"
-        android:textColor="@color/primaryTextColor"
-        android:textColorHint="@color/primaryHintColor"
-        tools:ignore="HardcodedText,LabelFor" />
+        android:layout_height="match_parent"
+        android:background="@color/primaryLightColor"
+        android:padding="16dp"
+        tools:context=".ui.new_customer.NewFragment">
 
-    <EditText
-        android:id="@+id/edit_text_address"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autofillHints="Address"
-        android:ems="10"
-        android:hint="Address"
-        android:inputType="textPersonName"
-        android:textColor="@color/primaryTextColor"
-        android:textColorHint="@color/primaryHintColor"
-        tools:ignore="HardcodedText,LabelFor"
-        android:layout_below="@id/edit_text_name"/>
+        <EditText
+            android:id="@+id/edit_text_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:autofillHints="Name"
+            android:ems="10"
+            android:hint="Name"
+            android:inputType="textPersonName"
+            android:textColor="@color/primaryTextColor"
+            android:textColorHint="@color/primaryHintColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText,LabelFor" />
 
-    <EditText
-        android:id="@+id/edit_text_account_balance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autofillHints="Account_balance"
-        android:ems="10"
-        android:hint="Account Balance"
-        android:inputType="number"
-        android:textColor="@color/primaryTextColor"
-        android:textColorHint="@color/primaryHintColor"
-        tools:ignore="HardcodedText,LabelFor"
-        android:layout_below="@id/edit_text_address"/>
+        <EditText
+            android:id="@+id/edit_text_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:autofillHints="Address"
+            android:ems="10"
+            android:hint="Address"
+            android:inputType="textPersonName"
+            android:textColor="@color/primaryTextColor"
+            android:textColorHint="@color/primaryHintColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_text_name"
+            tools:ignore="HardcodedText,LabelFor" />
 
-    <EditText
-        android:id="@+id/edit_telephone_number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autofillHints="Telephone_number"
-        android:ems="10"
-        android:hint="Telephone Number"
-        android:inputType="phone"
-        android:textColor="@color/primaryTextColor"
-        android:textColorHint="@color/primaryHintColor"
-        tools:ignore="HardcodedText,LabelFor"
-        android:layout_below="@id/edit_text_account_balance"/>
+        <EditText
+            android:id="@+id/edit_text_account_balance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:autofillHints="Account_balance"
+            android:ems="10"
+            android:hint="Account Balance"
+            android:inputType="number"
+            android:textColor="@color/primaryTextColor"
+            android:textColorHint="@color/primaryHintColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_text_address"
+            tools:ignore="HardcodedText,LabelFor" />
 
-    <EditText
-        android:id="@+id/edit_text_data_of_last_payment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autofillHints="Data_of_last_payment"
-        android:ems="10"
-        android:hint="Data Of Last Payment"
-        android:inputType="textPersonName"
-        android:textColor="@color/primaryTextColor"
-        android:textColorHint="@color/primaryHintColor"
-        tools:ignore="HardcodedText,LabelFor"
-        android:layout_below="@id/edit_telephone_number"/>
+        <EditText
+            android:id="@+id/edit_telephone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:autofillHints="Telephone_number"
+            android:ems="10"
+            android:hint="Telephone Number"
+            android:inputType="number"
+            android:textColor="@color/primaryTextColor"
+            android:textColorHint="@color/primaryHintColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_text_account_balance"
+            tools:ignore="HardcodedText,LabelFor" />
 
-    <Button
-        android:id="@+id/button_save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Save"
-        android:layout_marginTop="16dp"
-        android:layout_below="@id/edit_text_data_of_last_payment"
-        android:layout_centerHorizontal="true"
-        tools:ignore="HardcodedText"
-        android:enabled="false"/>
+        <EditText
+            android:id="@+id/edit_text_data_of_last_payment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:autofillHints="Data_of_last_payment"
+            android:ems="10"
+            android:hint="Data Of Last Payment"
+            android:inputType="textPersonName"
+            android:textColor="@color/primaryTextColor"
+            android:textColorHint="@color/primaryHintColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_telephone_number"
+            tools:ignore="HardcodedText,LabelFor" />
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/button_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button_back"
+            app:layout_constraintTop_toBottomOf="@+id/edit_text_data_of_last_payment" />
+
+        <Button
+            android:id="@+id/button_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/back"
+            app:layout_constraintEnd_toStartOf="@+id/button_save"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_text_data_of_last_payment" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
