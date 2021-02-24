@@ -1,15 +1,15 @@
 package com.example.customeraccounts.data
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CustomerDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addCustomer(customer: Customer)
 
-    @Query("SELECT * FROM customer_table ORDER BY id ASC")
-    fun getAllData(): LiveData<List<Customer>>
+    @Query("SELECT * FROM customer_table WHERE name LIKE '%' || :searchQuery || '%' ORDER BY id DESC")
+    fun getAllData(searchQuery: String): Flow<List<Customer>>
 
     @Query("DELETE FROM customer_table")
     suspend fun clear()

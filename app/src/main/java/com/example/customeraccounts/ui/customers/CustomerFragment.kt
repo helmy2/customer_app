@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -15,6 +17,7 @@ import com.example.customeraccounts.R.color.*
 import com.example.customeraccounts.data.Customer
 import com.example.customeraccounts.data.CustomerViewModel
 import com.example.customeraccounts.databinding.FragmentCustomerBinding
+import com.example.customeraccounts.ui.details.DetailsFragmentDirections
 import com.google.android.material.snackbar.Snackbar
 
 
@@ -84,4 +87,29 @@ class CustomerFragment : Fragment() {
         setHasOptionsMenu(true)
         return binding.root
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.app_bar_search, menu)
+
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchView = searchItem.actionView as SearchView
+
+        searchView.onQueryTextChanged {
+            customerViewModel.searchQuery.value = it
+        }
+    }
+
+}
+
+inline fun SearchView.onQueryTextChanged(crossinline listener: (String) -> Unit) {
+    this.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(query: String?): Boolean {
+            return true
+        }
+
+        override fun onQueryTextChange(newText: String?): Boolean {
+            listener(newText.orEmpty())
+            return true
+        }
+    })
 }

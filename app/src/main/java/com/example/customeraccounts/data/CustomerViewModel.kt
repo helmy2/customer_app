@@ -8,13 +8,25 @@ import androidx.lifecycle.viewModelScope
 import com.example.customeraccounts.data.Customer
 import com.example.customeraccounts.data.CustomerDatabase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.flatMapLatest
+import androidx.lifecycle.asLiveData
 import kotlinx.coroutines.launch
 
 class CustomerViewModel(application: Application) : AndroidViewModel(application) {
-    private val customerDao = CustomerDatabase.getDatabase(application).getDao()
-    val allData: LiveData<List<Customer>> = customerDao.getAllData()
 
-    val customerHasDelete : MutableLiveData<Customer> = MutableLiveData()
+    private val customerDao = CustomerDatabase.getDatabase(application).getDao()
+
+
+    val searchQuery = MutableStateFlow("")
+    private val customerFlow = searchQuery.flatMapLatest {
+        customerDao.getAllData(it)
+    }
+    val allData: LiveData<List<Customer>> = customerFlow.asLiveData()
+
+
+    val customerHasDelete: MutableLiveData<Customer> = MutableLiveData()
 
     fun addCustomer(customer: Customer) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -34,12 +46,6 @@ class CustomerViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
-    fun deleteCustomer(id: Int) {
-        viewModelScope.launch(Dispatchers.IO) {
-            customerDao.deleteCustomer(Customer(id = id))
-        }
-    }
-
     fun deleteCustomer(customer: Customer) {
         viewModelScope.launch(Dispatchers.IO) {
             customerDao.deleteCustomer(customer)
@@ -47,7 +53,7 @@ class CustomerViewModel(application: Application) : AndroidViewModel(application
         customerHasDelete.value = customer
     }
 
-    fun confirmDeleteCustomer(){
+    fun confirmDeleteCustomer() {
         customerHasDelete.value = null
     }
 }

@@ -28,13 +28,7 @@ class NewFragment : Fragment() {
         // Inflate the layout for this fragment
         val binding = FragmentNewBinding.inflate(inflater, container, false)
 
-        binding.buttonBack.setOnClickListener {
-            val action =
-                NewFragmentDirections.actionNewFragmentToCustomerFragment2()
-            findNavController().navigate(action)
-        }
-
-        binding.buttonSave.setOnClickListener {
+        binding.fabSave.setOnClickListener {
             binding.apply {
                 if (
                     editTextName.text.isEmpty() ||
