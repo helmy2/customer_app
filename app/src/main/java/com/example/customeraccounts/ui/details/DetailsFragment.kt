@@ -35,6 +35,12 @@ class DetailsFragment : Fragment() {
             textTelephoneNumber.text = args.customer.telephoneNumber
         }
 
+        binding.fabEdit.setOnClickListener {
+            val action =
+            DetailsFragmentDirections.actionDetailsFragmentToEditFragment(args.customer)
+            findNavController().navigate(action)
+        }
+
         setHasOptionsMenu(true)
         return binding.root
     }
@@ -48,9 +54,7 @@ class DetailsFragment : Fragment() {
         return when (item.itemId) {
             R.id.delete -> {
                 customerViewModel.deleteCustomer(args.customer)
-                val action =
-                    DetailsFragmentDirections.actionDetailsFragmentToCustomerFragment2()
-                findNavController().navigate(action)
+                findNavController().navigateUp()
                 true
             }
             else -> super.onOptionsItemSelected(item)

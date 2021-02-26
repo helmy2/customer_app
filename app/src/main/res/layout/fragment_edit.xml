@@ -4,12 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.customers.CustomerFragment">
+    tools:context=".ui.edit.EditFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <EditText
             android:id="@+id/edit_text_name"
@@ -71,11 +70,10 @@
             app:layout_constraintTop_toBottomOf="@+id/edit_telephone_number"
             tools:ignore="HardcodedText,LabelFor" />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_save"
+        android:id="@+id/fab_save_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"

@@ -1,9 +1,11 @@
 package com.example.customeraccounts.ui.customers
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.view.*
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
@@ -30,6 +32,7 @@ class CustomerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
+
         val binding = FragmentCustomerBinding.inflate(inflater, container, false)
 
         val customerAdapter = CustomerAdapter()
