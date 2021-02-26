@@ -1,12 +1,8 @@
 package com.example.customeraccounts.ui.customers
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.view.*
-import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -15,12 +11,9 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.customeraccounts.R
-import com.example.customeraccounts.R.color.*
-import com.example.customeraccounts.data.Customer
-import com.example.customeraccounts.data.CustomerViewModel
 import com.example.customeraccounts.databinding.FragmentCustomerBinding
-import com.example.customeraccounts.ui.details.DetailsFragmentDirections
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.snackbar.Snackbar.*
 
 
 class CustomerFragment : Fragment() {
@@ -71,7 +64,7 @@ class CustomerFragment : Fragment() {
 
             customerHasDelete.observe(viewLifecycleOwner) { customer ->
                 if (customer != null) {
-                    Snackbar.make(requireView(), "Task deleted", Snackbar.LENGTH_LONG)
+                    make(requireView(), "Task deleted", LENGTH_LONG)
                         .setBackgroundTint(Color.parseColor("#5e92f3"))
                         .setTextColor(Color.parseColor("#ffffff"))
                         .setActionTextColor(Color.parseColor("#ffffff"))
@@ -102,17 +95,17 @@ class CustomerFragment : Fragment() {
         }
     }
 
+    private inline fun SearchView.onQueryTextChanged(crossinline listener: (String) -> Unit) {
+        this.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                listener(newText.orEmpty())
+                return true
+            }
+        })
+    }
 }
 
-inline fun SearchView.onQueryTextChanged(crossinline listener: (String) -> Unit) {
-    this.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-        override fun onQueryTextSubmit(query: String?): Boolean {
-            return true
-        }
-
-        override fun onQueryTextChange(newText: String?): Boolean {
-            listener(newText.orEmpty())
-            return true
-        }
-    })
-}

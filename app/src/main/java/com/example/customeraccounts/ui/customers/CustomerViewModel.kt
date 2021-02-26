@@ -1,4 +1,4 @@
-package com.example.customeraccounts.data
+package com.example.customeraccounts.ui.customers
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -12,16 +12,17 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import androidx.lifecycle.asLiveData
+import com.example.customeraccounts.repository.CustomerRepository
 import kotlinx.coroutines.launch
 
 class CustomerViewModel(application: Application) : AndroidViewModel(application) {
 
     private val customerDao = CustomerDatabase.getDatabase(application).getDao()
-
+    private val repository = CustomerRepository(customerDao)
 
     val searchQuery = MutableStateFlow("")
     private val customerFlow = searchQuery.flatMapLatest {
-        customerDao.getAllData(it)
+        repository.allData(it)
     }
     val allData: LiveData<List<Customer>> = customerFlow.asLiveData()
 
@@ -30,25 +31,13 @@ class CustomerViewModel(application: Application) : AndroidViewModel(application
 
     fun addCustomer(customer: Customer) {
         viewModelScope.launch(Dispatchers.IO) {
-            customerDao.addCustomer(customer)
-        }
-    }
-
-    fun clear() {
-        viewModelScope.launch(Dispatchers.IO) {
-            customerDao.clear()
-        }
-    }
-
-    fun update(customer: Customer) {
-        viewModelScope.launch(Dispatchers.IO) {
-            customerDao.update(customer)
+            repository.addCustomer(customer)
         }
     }
 
     fun deleteCustomer(customer: Customer) {
         viewModelScope.launch(Dispatchers.IO) {
-            customerDao.deleteCustomer(customer)
+            repository.deleteCustomer(customer)
         }
         customerHasDelete.value = customer
     }

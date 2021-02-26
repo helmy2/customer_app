@@ -9,12 +9,11 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.customeraccounts.data.Customer
-import com.example.customeraccounts.data.CustomerViewModel
 import com.example.customeraccounts.databinding.FragmentEditBinding
 
 class EditFragment : Fragment() {
     private val args: EditFragmentArgs by navArgs()
-    private val customerViewModel: CustomerViewModel by activityViewModels()
+    private val viewModel: EditViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,7 +50,7 @@ class EditFragment : Fragment() {
                     args.customer.accountBalance
                 } else editTextAccountBalance.text.toString()
 
-                customerViewModel.update(
+                viewModel.update(
                     Customer(name, address, number, balance, lastPayment, args.customer.id)
                 )
 

@@ -11,9 +11,6 @@ interface CustomerDao {
     @Query("SELECT * FROM customer_table WHERE name LIKE '%' || :searchQuery || '%' ORDER BY id DESC")
     fun getAllData(searchQuery: String): Flow<List<Customer>>
 
-    @Query("DELETE FROM customer_table")
-    suspend fun clear()
-
     @Delete
     suspend fun deleteCustomer(customer: Customer)
 

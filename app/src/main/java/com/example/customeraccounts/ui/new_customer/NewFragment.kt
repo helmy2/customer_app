@@ -1,7 +1,6 @@
 package com.example.customeraccounts.ui.new_customer
 
 import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,18 +9,13 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
-import com.example.customeraccounts.R
 import com.example.customeraccounts.data.Customer
-import com.example.customeraccounts.data.CustomerViewModel
 import com.example.customeraccounts.databinding.FragmentNewBinding
-import com.example.customeraccounts.ui.customers.CustomerFragmentDirections
-import kotlin.math.absoluteValue
 
 class NewFragment : Fragment() {
 
-    private val customerViewModel: CustomerViewModel by activityViewModels()
+    private val viewModel: NewViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,7 +43,7 @@ class NewFragment : Fragment() {
                         editTextAccountBalance.text.toString(),
                         editTextDataOfLastPayment.text.toString()
                     )
-                    customerViewModel.addCustomer(customer)
+                    viewModel.addCustomer(customer)
 
                     // hide keyboard
                     val imm =
